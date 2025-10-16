@@ -5,6 +5,8 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/components/useColorScheme';
 import React from 'react';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -12,6 +14,8 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <KeyboardProvider>
+          <SafeAreaProvider>
             <Stack
               initialRouteName='signIn'
               screenOptions={{
@@ -20,6 +24,8 @@ export default function RootLayout() {
             >
               <Stack.Screen name="signIn" />
             </Stack>
+          </SafeAreaProvider>
+        </KeyboardProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   );

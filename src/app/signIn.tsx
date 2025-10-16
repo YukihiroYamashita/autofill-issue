@@ -3,6 +3,7 @@ import Input from '@/components/Input';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Button, ScrollView, StyleSheet } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import 'react-native-reanimated';
 
 export default function SignIn() {
@@ -16,27 +17,29 @@ export default function SignIn() {
   }
 
   return (
-    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center'}}>
-      <Input
-        label='username'
-        value={username}
-        onChangeText={setUsername}
-        autoComplete='email'
-        importantForAutofill='yes'
-      />
-      <Input
-        label='password'
-        value={password}
-        onChangeText={setPassword}
-        autoComplete='password'
-        importantForAutofill='yes'
-        secureTextEntry
-      />
-      <Button
-        title='Confirm'
-        onPress={handleOnClick}
-      />
-    </ScrollView>
+    <KeyboardAvoidingView style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center'}}>
+        <Input
+          label='username'
+          value={username}
+          onChangeText={setUsername}
+          autoComplete='email'
+          importantForAutofill='yes'
+        />
+        <Input
+          label='password'
+          value={password}
+          onChangeText={setPassword}
+          autoComplete='password'
+          importantForAutofill='yes'
+          secureTextEntry
+        />
+        <Button
+          title='Confirm'
+          onPress={handleOnClick}
+        />
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
